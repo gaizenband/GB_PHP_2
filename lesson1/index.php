@@ -56,7 +56,7 @@ $notebooks = [
     ],
 ];
 
-foreach ($cars as $value){
+foreach ($cars as $key => $value){
     $obj = new CarProduct(
         $value["count"],
         $value["name"],

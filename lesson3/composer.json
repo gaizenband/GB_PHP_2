@@ -1,0 +1,15 @@
+{
+  "name": "vendor_name/gb_php_2",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "gaizenband",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "vendor/twig/twig": "1.8.3"
+  }
+}

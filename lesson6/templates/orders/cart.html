@@ -1,0 +1,11 @@
+{% include 'header.html' %}
+{% for item in content_data %}
+<div>
+    <h3>{{ item.name }}</h3>
+    <h5>Количество: {{ item.is_in_order }}</h5>
+    <p>Стоимость {{ item.price *  item.is_in_order}}</p>
+</div>
+
+{% endfor %}
+{{ content_data }}
+{% include 'footer.html' %}

@@ -1,0 +1,6 @@
+{% include 'header.html' %}
+<a href="?path=user/logout">Выйти</a>
+{% for info in content_data %}
+    <p>Welcome! {{ info.user_login }}</p>
+{% endfor %}
+{% include 'footer.html' %}

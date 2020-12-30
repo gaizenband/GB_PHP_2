@@ -1,0 +1,11 @@
+{% include 'header.html' %}
+
+<h1>{{ content_data.name }}</h1>
+<p>{{ content_data.price }}</p>
+
+{% if user %}
+<a id='buyme' class='good_{{ content_data.id_good }}' href="?path=order/add/{{ content_data.id_good }}">Купить</a>
+{% else %}
+<p>Пожалуйста, авторизуйтесь</p>
+{% endif %}
+{% include 'footer.html' %}

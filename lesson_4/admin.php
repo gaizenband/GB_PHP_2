@@ -14,7 +14,7 @@ if($_GET['action'] == 'change'){
 //        $sql = "update shop set img = '$imgName', product_name = '$name',short_desc = '$desc',price = '$price' where id = $id";
         $sql = $connection->exec("update shop set img = '$imgName', product_name = '$name',short_desc = '$desc',price = '$price' where id = $id");
         if($sql && move_uploaded_file($_FILES['image']['tmp_name'],$path)){
-            header("Location: index.html");
+            header("Location: login.html");
         } else {
             echo mysqli_error($GLOBALS['connection']);
         }
@@ -22,7 +22,7 @@ if($_GET['action'] == 'change'){
 //        $sql = "update shop set product_name = '$name',short_desc = '$desc',price = '$price' where id = $id";
         $sql = $connection->exec("update shop set product_name = '$name',short_desc = '$desc',price = '$price' where id = $id");
         if($sql){
-            header("Location: index.html");
+            header("Location: login.html");
         } else {
             echo mysqli_error($GLOBALS['connection']);
         }
@@ -39,7 +39,7 @@ if($_GET['action'] == 'change'){
 //    $sql = "insert into shop(img,product_name,short_desc,price,long_desc,in_storage) values('$imgName','$name','$desc',$price,'$desc',100)";
     $sql = $connection->exec("insert into shop(img,product_name,short_desc,price,long_desc,in_storage) values('$imgName','$name','$desc',$price,'$desc',100)");
     if($sql && move_uploaded_file($_FILES['image']['tmp_name'],$path)){
-        header("Location: index.html");
+        header("Location: login.html");
     } else {
         echo mysqli_error($GLOBALS['connection']);
     }

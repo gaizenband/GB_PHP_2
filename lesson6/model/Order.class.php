@@ -19,4 +19,11 @@ class Order extends Model {
             'type' => 'float'
         ];
     }
+
+    public static function getOrders($id_user){
+        return  db::getInstance()->Select(
+            'SELECT id_order, amount, datetime_create, id_order_status FROM `order` WHERE id_user = :id_user',
+            ['id_user' => $id_user]
+        );
+    }
 }

@@ -1,11 +1,15 @@
 {% include 'header.html' %}
 
-<h1>{{ content_data.name }}</h1>
-<p>{{ content_data.price }}</p>
+<div class="good-item">
+    <img src="../img/items/{{content_data.id_good}}.jpg" alt="logo" class="good-img">
+    <h1>{{ content_data.name }}</h1>
+    <h2>{{ content_data.price }} руб.</h2>
 
-{% if user %}
-<a id='buyme' class='good_{{ content_data.id_good }}' href="?path=order/add/{{ content_data.id_good }}">Купить</a>
-{% else %}
-<p>Пожалуйста, авторизуйтесь</p>
-{% endif %}
+    {% if user %}
+    <a class='buyme' id='good_{{ content_data.id_good }}' href="?path=order/add/{{ content_data.id_good }}">Купить</a>
+    {% else %}
+    <p>Пожалуйста, авторизуйтесь</p>
+    {% endif %}
+</div>
+
 {% include 'footer.html' %}

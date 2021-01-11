@@ -1,11 +1,23 @@
 {% include 'header.html' %}
-{% for item in content_data %}
-<div>
-    <h3>{{ item.name }}</h3>
-    <h5>Количество: {{ item.is_in_order }}</h5>
-    <p>Стоимость {{ item.price *  item.is_in_order}}</p>
-</div>
+{% if content_data['items'] %}
+    {% set total = 0 %}
+    <form id={{content_data['id']}} action="#" method="post">
+        <p>Заказ №{{content_data['id']}}</p>
+        {% for item in content_data['items'] %}
+        <div class="cart-item">
+            <h3>{{ item.name }}</h3>
+            <h5>Количество: {{ item.is_in_order }}</h5>
+            <p>Стоимость: {{ item.price *  item.is_in_order}}</p>
+            {% set total = total + item.price *  item.is_in_order %}
+        </div>
+        {% endfor %}
+        <input type="number" name="amount" value={{total}} class="text">
+        <input style="display:none;" name="id_order" value={{content_data['id']}}>
+        <input type="submit" value="Заказать">
+    </form>
 
-{% endfor %}
-{{ content_data }}
+{% else %}
+    <p>Пусто</p>
+{% endif %}
+<!--{{ content_data }}-->
 {% include 'footer.html' %}

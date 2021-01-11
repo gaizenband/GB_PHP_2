@@ -25,6 +25,10 @@ class Basket extends Model
         $this->id_user = $id_user;
     }
 
+    function newIdOrder(){
+        ++$this->id_order;
+    }
+
     function getIdOrder(){
         return $this->id_order;
     }
@@ -51,6 +55,7 @@ class Basket extends Model
     public function setIsInOrder($is_in_order)
     {
         $this->is_in_order = $is_in_order;
+
     }
 
     /**
@@ -58,14 +63,15 @@ class Basket extends Model
      */
     public function setIdOrder()
     {
-        if (!$this->id_order){
-            $this->id_order = (int)$this->getLastOrderId() + 1;
-        }
+//        if (!$this->id_order || $this->id_order == $this->getLastOrderId()){
+            $this->id_order = (int)$this->getLastOrderId()[0]['id'] + 1;
+//        }
     }
 
     public function getLastOrderId(){
-        return db::getInstance()->Select('SELECT MAX("order_id") FROM `order`');
+        return db::getInstance()->Select('SELECT MAX(id_order) as id FROM shopdb.order');
     }
+
 
     private function isInBasket(){
         return db::getInstance()->Select('SELECT * FROM basket where id_order = :id_order and id_good = :id_good',
@@ -74,17 +80,17 @@ class Basket extends Model
 
     public function getGoods(){
         return db::getInstance()->Select('SELECT basket.id_good, basket.is_in_order, basket.price,
-        goods.name FROM basket INNER JOIN goods on basket.id_good = goods.id_good where basket.id_order = :id_order ',
+        goods.name FROM basket INNER JOIN goods on basket.id_good = goods.id_good where basket.id_order = :id_order and ISNULL(basket.ordered)',
             ['id_order'=>$this->id_order]);
     }
 
     public function save(){
         if($this->isInBasket()){
-            $query = "UPDATE basket SET is_in_order = is_in_order + 1 
+            $query = "UPDATE basket SET is_in_order = is_in_order + 1
             where id_user = $this->id_user and id_good = $this->id_good and id_order = $this->id_order";
 
         }else{
-            $query = "INSERT INTO basket(id_user, id_good, price, is_in_order, id_order) VALUES 
+            $query = "INSERT INTO basket(id_user, id_good, price, is_in_order, id_order) VALUES
                   (
                     ".$this->id_user.",
                     ".$this->id_good.",

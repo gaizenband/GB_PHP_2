@@ -6,21 +6,28 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <link rel="stylesheet" href="../style/style.css">
     <body>
-        <ul>
-            {% for category in categories %}
-            <li>
-                <a href="?path=Categories/{{ category.id_category }}" link="{{ category.id_category }}" class="category-link">{{ category.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-
-    <div>
-        {% if user %}
-            <a href="?path=user/personalPage">Личный кабинет</a>
-            <a href="?path=order/cart">Корзина</a>
-        {% else %}
-            <a href="?path=user/login">Авторизация</a>
-        {% endif %}
-    </div>
+        <header class="header">
+            <p class="shopName"> Super Shop</p>
+            <ul class="menu">
+                <li>
+                    <a href="./" class="category-link">Homepage</a>
+                </li>
+                {% for category in categories %}
+                <li>
+                    <a href="?path=Categories/{{ category.id_category }}" link="{{ category.id_category }}" class="category-link">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="personal">
+                {% if user %}
+                <a href="?path=user/personalPage" class="personal-link">Личный кабинет</a>
+                <a href="?path=order/cart" class="personal-link">Корзина</a>
+                <a href="?path=user/logout" class="logout">Выйти</a>
+                {% else %}
+                <a href="?path=user/login" class="personal-link">Авторизация</a>
+                {% endif %}
+            </div>
+        </header>
+        <div class="content">
 
 

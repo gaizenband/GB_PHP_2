@@ -6,8 +6,9 @@ class UserController extends Controller
 
     function personalPage(){
         if(isset($_COOKIE['id'])){
-            return User::getUser($_COOKIE['id']);
+            return ['user'=>User::getUser($_COOKIE['id']),'orders'=>Order::getOrders($_COOKIE['id'])];
         }
+        
         return "None";
     }
 

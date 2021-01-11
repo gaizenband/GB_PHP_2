@@ -4,10 +4,12 @@ class OrderController extends Controller
 {
     public $view = 'orders';
     private $basket;
+    private $order;
 
     public function __construct()
     {
         $this->basket = new Basket();
+        $this->order = new OrderGood([]);
     }
 
     public function add(){
@@ -31,7 +33,14 @@ class OrderController extends Controller
     }
 
     public function cart(){
-        $this->basket->setIdOrder();
-        return $this->basket->getGoods();
+        if (isset ($_POST['amount'])){
+            $this->basket->newIdOrder();
+            $this->order->setOrder($_POST['id_order'],$_COOKIE['id'],$_POST['amount']);
+
+        }else{
+            $this->basket->setIdOrder();
+            return ['items'=>$this->basket->getGoods(),'id' => $this->basket->getIdOrder()];
+
+        }
     }
 }

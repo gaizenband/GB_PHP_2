@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+{% for info in content_data['user'] %}
+    <p>Welcome! {{ info.user_login }}</p>
+{% endfor %}
+{% for order in content_data['orders'] %}
+<div class="order-personal cart-item">
+    <div class="info">
+        <h2>Заказ №{{order.id_order}}</h2>
+        <h3>На сумму: {{order.amount}}</h3>
+        <p>Создан: {{order.datetime_create}}</p>
+        <p class="id_{{order.id_order_status}}">Статус: {{order.order_status_name}}</p>
+    </div>
+    {% if order.id_order_status == 1%}
+    <button class="deleteCartItem" type="button" onClick="cancelOrder({{order.id_order}})">Отменить</button>
+    {% endif %}
+</div>
+{% endfor %}
+{% include 'footer.html' %}

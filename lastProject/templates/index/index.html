@@ -1,0 +1,15 @@
+{% include 'header.html' %}
+<p class="new-txt">Новое в магазине</p>
+<div id="goods-data">
+    <ul class="category-list">
+        {% for good in content_data.goods %}
+        <li>
+            <a href="?path=Categories/goods/{{ good.id_good }}/" class="category-path">
+                <img src="../img/items/{{good.id_good}}.jpg" alt="logo" class="category-img">
+                <p>{{ good.name }}</p>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% include 'footer.html' %}

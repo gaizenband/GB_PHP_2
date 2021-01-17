@@ -1,0 +1,165 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+header {
+    margin: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: #6060d9;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    margin: 0 10vw;
+}
+
+.shopName {
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    }
+
+.menu {
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-link:link, .category-link:visited {
+    color: white;
+    margin: 5px;
+}
+.category-link:hover {
+    color: red;
+}
+
+.personal {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.personal-link:link, .personal-link:visited {
+    color: white;
+    margin: 5px;
+}
+.personal-link:hover {
+    color: red;
+}
+
+.logout:link, .logout:visited {
+    color: white;
+    margin: 5px;
+}
+.logout:hover {
+    color: red;
+}
+
+.content{
+    margin: 3vh 10vw;
+}
+
+.new-txt {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 2vh;
+}
+
+.category-img {
+    width: 30vw;
+    height:35vh;
+}
+
+.category-list, .goods-data{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.category-list-admin {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.category-path:link, .category-path:visited {
+    color: rgb(186, 105, 105);
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.category-path:hover {
+    color: red;
+}
+
+.good-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.good-img {
+    width: 40vw;
+}
+
+.admin-img {
+    width: 10vw;
+}
+
+.buyme:link, .buyme:visited {
+    color: rgb(186, 105, 105);
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.buyme:hover {
+    color: red;
+}
+
+.cart-item{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteCartItem {
+    padding: 5px;
+    align-self: center;
+}
+
+.text {
+    border: none;
+    display: inline;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+    width: auto;
+    pointer-events: none;
+}
+
+.text::-webkit-outer-spin-button,
+.text::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.order-personal{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}

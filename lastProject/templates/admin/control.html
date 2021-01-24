@@ -2,42 +2,85 @@
 <h1>Control:: {{ content_data.name }}</h1>
     {% if content_data.name == 'orders' %}
         {% for order in content_data.result %}
-            <div class="order-personal" id="{{order.id_order}}">
+            <div class="order-personal">
                 <h2>Заказ №{{order.id_order}}</h2>
                 <h3>На сумму: {{order.amount}}</h3>
                 <p>Создан: {{order.datetime_create}}</p>
-                <p>Статус: {{order.id_order_status}}</p>
-                <select name="status" id="">
+                <select name="status" id="{{order.id_order}}:{{order.id_user}}" onchange="changeStatus(this, options[selectedIndex].dataset.id);">
                     {% for status in content_data.statusList %}
                         {% set selected = '' %}
-                        {%  if (order.id_order_status == status.id_order_status)  %}
-                            {% set selected = 'selected' %}
-                        {% endif %}
+                            {%  if (order.id_order_status == status.id_order_status)  %}
+                                {% set selected = 'selected' %}
+                            {% endif %}
                         <option value="{{status.order_status_name}}" data-id="{{status.id_order_status}}" {{ selected }}>{{status.order_status_name}}</option>
                     {% endfor %}
                 </select>
             </div>
+
         {% endfor %}
     {% elseif content_data.name == 'categories' %}
+    <div class="d-flex flex-wrap">
+        <form enctype="multipart/form-data" method="POST" action="?path=admin/createCategory" class="card">
+            <p>Создать категорию</p>
+            <label for="imageCat" class="label btn btn-primary">Картинка</label>
+            <input id="imageCat" type="file" accept="image/jpg" name="Image" required>
+            <div class="card-body">
+                <input type="text" name="Name" class="card-title link" required>
+                Категория родителя:
+                <select name="main">
+                    <option value="0" data-id="0" selected>Нет</option>
+                {% for parents in content_data.parents %}
+                    <option value="{{parents.id_category}}" data-id="{{parents.id_category}}">{{parents.name}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Сохранить" class="btn btn-primary">
+        </form>
         {% for subcategory in content_data.result %}
-        <form enctype="multipart/form-data" method="POST" action="?path=admin/changeCategory/{{subcategory.id_category}}">
-            <li class="order-personal">
-                <img src="../img/categories/{{subcategory.img}}.jpg" alt="logo" class="admin-img">
-                <label for="file" class="label">Новая картинка:</label>
-                <input id="file" type="file" accept="image/jpg" name="Image">
-                <input type="text" value="{{ subcategory.name }}" name="Name">
-                <input type="submit" value="Сохранить">
-            </li>
+        <form enctype="multipart/form-data" method="POST" action="?path=admin/changeCategory/{{subcategory.id_category}}" class="card">
+            <img src="../img/categories/{{subcategory.img}}.jpg" class="card-img-top" alt="logo">
+            <label for="file" class="label btn btn-primary">Новая картинка</label>
+            <input id="file" type="file" accept="image/jpg" name="Image" >
+            <div class="card-body">
+                <input type="text" value="{{ subcategory.name }}" name="Name" class="card-title link">
+            </div>
+            <input type="submit" value="Сохранить" class="btn btn-primary">
         </form>
         {% endfor %}
+    </div>
+
     {% elseif content_data.name == 'goods' %}
+
+    <div class="d-flex flex-wrap">
+        <form enctype="multipart/form-data" method="POST" action="?path=admin/createGood" class="card">
+            <label for="newImgGood" class="label btn btn-primary">Картинка</label>
+            <input id="newImgGood" type="file" accept="image/jpg" name="Image" required>
+            <div class="card-body">
+                <p>Категория родителя:</p>
+                <select name="category" required>
+                    {% for categories in content_data.categories %}
+                    <option value="{{categories.id_category}}">{{categories.name}}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" name="Name" class="card-title link" placeholder="Имя" required>
+                <input type="number" name="Price" class="card-title link" placeholder="Стоимость" required>
+            </div>
+            <input type="submit" value="Сохранить" class="btn btn-primary">
+        </form>
+
         {% for good in content_data.result %}
-            <form class="good-item">
-                <img src="../img/items/{{good.id_good}}.jpg" alt="logo" class="admin-img">
-                <h1>{{ good.name }}</h1>
-                <h2>{{ good.price }} руб.</h2>
-            </form>
+        <form enctype="multipart/form-data" method="POST" action="?path=admin/changeGood/{{good.id_good}}" class="card">
+            <img src="../img/items/{{good.id_good}}.jpg" class="card-img-top" alt="logo">
+            <label for="imgGood" class="label btn btn-primary">Новая картинка</label>
+            <input id="imgGood" type="file" accept="image/jpg" name="Image" >
+            <div class="card-body">
+                <input type="text" value="{{ good.name }}" name="Name" class="card-title link">
+                <input type="number" value="{{ good.price }}" name="Price" class="card-title link">
+            </div>
+            <input type="submit" value="Сохранить" class="btn btn-primary">
+        </form>
         {% endfor %}
+    </div>
     {% endif %}
 
 {% include 'footer.html' %}

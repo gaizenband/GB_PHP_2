@@ -59,5 +59,105 @@ class db
             return $result->fetchAll();
         }
     }
+
+
+    //----------
+    public function Insert($table, $object) {
+
+        $columns = array();
+
+        foreach ($object as $key => $value) {
+
+            $columns[] = $key;
+            $masks[] = ":$key";
+
+            if ($value === null) {
+                $object[$key] = 'NULL';
+            }
+        }
+
+        $columns_s = implode(',', $columns);
+        $masks_s = implode(',', $masks);
+
+        $query = "INSERT INTO $table ($columns_s) VALUES ($masks_s)";
+
+        $q = $this->db->prepare($query);
+        $q->execute($object);
+
+        if ($q->errorCode() != PDO::ERR_NONE) {
+            $info = $q->errorInfo();
+            die($info[2]);
+        }
+
+        return $this->db->lastInsertId();
+    }
+
+    public function Update($table, $object, $where) {
+
+        $sets = array();
+        $wheres = array();
+
+
+        foreach ($object as $key => $value) {
+
+            $sets[] = "$key=:$key";
+
+            if ($value === null) {
+                $object[$key] = 'NULL';
+            }
+        }
+
+        foreach ($where as $key => $value) {
+
+            $wheres[] = "$key=:$key";
+
+            if ($value === NULL) {
+                $wheres[$key]='NULL';
+            }
+        }
+
+        $sets_s = implode(',',$sets);
+        $where_s = implode(' and ',$wheres);
+        $values = array_merge($object,$where);
+
+        $query = "UPDATE $table SET $sets_s WHERE $where_s";
+
+        $q = $this->db->prepare($query);
+        $q->execute($values);
+
+//        if ($q->errorCode() != PDO::ERR_NONE) {
+//            $info = $q->errorInfo();
+//            die($info[2]);
+//        }
+
+//        return $q->rowCount();
+        return $q;
+    }
+
+
+    public function Delete($table, $where) {
+
+        foreach ($where as $key => $value) {
+
+            $wheres[] = "$key=:$key";
+
+            if ($value === NULL) {
+                $wheres[$key]='NULL';
+            }
+        }
+        $where_s = implode(' and ',$wheres);
+
+        $query = "DELETE FROM $table WHERE $where_s";
+        $q = $this->db->prepare($query);
+        $q->execute($where);
+
+        if ($q->errorCode() != PDO::ERR_NONE) {
+            $info = $q->errorInfo();
+            die($info[2]);
+        }
+
+        return $q->rowCount();
+    }
+
 }
 ?>

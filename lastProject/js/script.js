@@ -1,6 +1,6 @@
-const deleteItem = (id) => {
+const deleteItem = (id,order_id) => {
     $.ajax({
-        url: `index.php?path=order/cart/${id}`,
+        url: `index.php?path=order/cart/${id},${order_id}`,
     })
     .done(function() {
     alert('Товар удален');
@@ -40,6 +40,19 @@ const cancelOrder = (order_id) => {
     });
     location.reload();
 }
+
+const changeStatus = (e,id) => {
+    let id_array = e.id.split(":");
+    let id_order = id_array[0];
+    let id_user = id_array[1];
+    $.ajax({
+        url: `index.php?path=admin/changeStatus/${id_order},${id_user},${id}`,
+    })
+        .done(function(data) {
+            alert(data);
+        });
+}
+
 
 // const saveCategory = (category_id) => {
 //     $.ajax({

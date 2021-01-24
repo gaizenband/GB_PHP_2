@@ -84,32 +84,43 @@ class Basket extends Model
             ['id_order'=>$this->id_order,'id_user'=>$this->id_user]);
     }
 
-    public function save(){
-        if($this->isInBasket()){
-            $query = "UPDATE basket SET is_in_order = is_in_order + 1
-            where id_user = $this->id_user and id_good = $this->id_good and id_order = $this->id_order";
-
-        }else{
-            $query = "INSERT INTO basket(id_user, id_good, price, is_in_order, id_order) VALUES
-                  (
-                    ".$this->id_user.",
-                    ".$this->id_good.",
-                    ".$this->price.",
-                    ".$this->is_in_order.",
-                    ".$this->id_order."
-                  )";
-        }
-
-        db::getInstance()->Query($query);
+    private function getCount($id_good,$id_user,$id_order){
+        return db::getInstance()->Select('SELECT is_in_order FROM basket 
+                where id_user = :id_user and id_good = :id_good and id_order = :id_order',
+            ['id_user'=>$id_user,'id_good'=>$id_good,'id_order'=>$id_order]);
     }
 
-    public function deleteItem($id){
-        $query = "DELETE FROM basket where id_user = :id_user and id_good = :id_good";
-        db::getInstance()->Query($query,['id_user'=>$_COOKIE['id'],'id_good'=>$id]);
+    public function save(){
+        if($this->isInBasket()){
+            db::getInstance()->Update(
+                'basket',
+                ['is_in_order'=>$this->getCount($this->id_good,$this->id_user,$this->id_order)[0]['is_in_order'] + 1],
+                ['id_user'=>$this->id_user,'id_good'=>$this->id_good,'id_order'=>$this->id_order]
+            );
+
+        }else{
+            db::getInstance()->Insert('basket',
+                [   'id_user'=>$this->id_user,
+                    'id_good'=>$this->id_good,
+                    'price'=>$this->price,
+                    'is_in_order'=>$this->is_in_order,
+                    'id_order'=>$this->id_order]
+            );
+        }
+    }
+
+    public function deleteItem($id,$id_order){
+        db::getInstance()->Delete(
+            'basket',
+            ['id_user'=>$_COOKIE['id'],'id_good'=>$id,'id_order'=>$id_order]
+        );
     }
 
     public function changeValue($id,$value){
-        $query = "UPDATE basket SET is_in_order = :num where id_good = :id_good and id_user = :id_user";
-        db::getInstance()->Query($query,['id_user'=>$_COOKIE['id'],'id_good'=>$id, 'num' => $value]);
+        db::getInstance()->Update(
+            'basket',
+            ['is_in_order'=>$value],
+            ['id_good'=>$id,'id_user'=>$_COOKIE['id']]
+        );
     }
 }

@@ -22,6 +22,20 @@ class Category extends Model {
             ['status' => Status::Active, 'parent_id' => $parentId]);
     }
 
+    public static function getParents()
+    {
+        return db::getInstance()->Select(
+            'SELECT id_category, name FROM categories WHERE status=:status AND parent_id = :parent_id',
+            ['status' => Status::Active, 'parent_id' => 0]);
+    }
+
+    public static function getBaseCategories()
+    {
+        return db::getInstance()->Select(
+            'SELECT id_category, name FROM categories WHERE status=:status AND parent_id <> :parent_id',
+            ['status' => Status::Active, 'parent_id' => 0]);
+    }
+
     public static function getAllCategories(){
         return db::getInstance()->Select(
             'SELECT id_category, name, img, status, parent_id FROM categories where parent_id <> 0'
@@ -29,18 +43,38 @@ class Category extends Model {
     }
 
     public static function changeCategory($id,$name){
-        return db::getInstance()->Query(
-            'UPDATE categories SET `name` = :newName where id_category = :id_category',
-            ['id_category'=>$id,'newName'=>$name]
+//        return db::getInstance()->Query(
+//            'UPDATE categories SET `name` = :newName where id_category = :id_category',
+//            ['id_category'=>$id,'newName'=>$name]
+//        );
+
+        db::getInstance()->Update(
+            'categories',
+            ['name'=>$name],
+            ['id_category'=>$id]
         );
     }
 
     public static function newImage($id,$image){
         $path=dirname(__DIR__, 1)."/img/categories/".$image['name'];
         if(move_uploaded_file($image['tmp_name'],$path)){
-            db::getInstance()->Query(
-                'UPDATE categories SET `img` = :imgName where id_category = :id_category',
-                ['id_category'=>$id,'imgName'=>mb_substr($image['name'],0,mb_strlen($image['name'])-4)]
+            db::getInstance()->Update(
+                'categories',
+                ['img'=>mb_substr($image['name'],0,mb_strlen($image['name'])-4)],
+                ['id_category'=>$id]
+            );
+        }
+    }
+
+    public static function createCategory($name, $file, $mainCategory){
+        $path=dirname(__DIR__, 1)."/img/categories/".$file['name'];
+        if(move_uploaded_file($file['tmp_name'],$path)) {
+            db::getInstance()->Insert('categories',
+                ['name' => $name,
+                    'status' => 1,
+                    'img' => mb_substr($file['name'], 0, mb_strlen($file['name']) - 4),
+                    'parent_id' => $mainCategory
+                ]
             );
         }
     }

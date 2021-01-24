@@ -1,15 +1,15 @@
 {% include 'header.html' %}
-<p class="new-txt">Новое в магазине</p>
-<div id="goods-data">
-    <ul class="category-list">
-        {% for good in content_data.goods %}
-        <li>
-            <a href="?path=Categories/goods/{{ good.id_good }}/" class="category-path">
-                <img src="../img/items/{{good.id_good}}.jpg" alt="logo" class="category-img">
-                <p>{{ good.name }}</p>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+<p class="fs-2">Новое в магазине</p>
+<div class="cards">
+    {% for good in content_data.goods %}
+    <div class="card">
+        <img src="../img/items/{{good.id_good}}.jpg" class="card-img-top" alt="logo">
+        <div class="card-body">
+            <h5 class="card-title">{{ good.name }}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="?path=Categories/goods/{{ good.id_good }}/" class="btn btn-primary">More...</a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% include 'footer.html' %}

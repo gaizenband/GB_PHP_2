@@ -1,27 +1,29 @@
 {% include 'header.html' %}
 {% if content_data['items'] %}
-    {% set total = 0 %}
-    <form id={{content_data['id']}} action="#" method="post">
-        <p>Заказ №{{content_data['id']}}</p>
-        {% for item in content_data['items'] %}
-        <div class="cart-item">
-            <div class="info">
-                <h3>{{ item.name }}</h3>
-                <label for="{{item.id_good}}">Количество:</label>
-                <input class="itemCount" id="{{item.id_good}}" type="number" value="{{ item.is_in_order }}" oninput="changeCount({{item.id_good}},this.value)" min="1" max="50">
-                <p>Стоимость: {{ item.price *  item.is_in_order}}</p>
-                {% set total = total + item.price *  item.is_in_order %}
-            </div>
-            <button class="deleteCartItem" type="button" onClick="deleteItem({{item.id_good}})">Удалить</button>
+{% set total = 0 %}
+<form id={{content_data['id']}} action="#" method="post">
+    <p>Заказ №{{content_data['id']}}</p>
+    {% for item in content_data['items'] %}
+    <div class="cart-item">
+        <div class="info">
+            <h3>{{ item.name }}</h3>
+            <label for="{{item.id_good}}">Количество:</label>
+            <input class="itemCount" id="{{item.id_good}}" type="number" value="{{ item.is_in_order }}" oninput="changeCount({{item.id_good}},this.value)" min="1" max="50">
+            <p>Стоимость: {{ item.price *  item.is_in_order}}</p>
+            {% set total = total + item.price *  item.is_in_order %}
         </div>
-        {% endfor %}
-        <input type="number" name="amount" value={{total}} class="text">
+        <button class="deleteCartItem btn btn-primary" type="button" onClick="deleteItem({{item.id_good}},{{content_data['id']}})">Удалить</button>
+    </div>
+    {% endfor %}
+    <div class="d-flex">
+        <p>Всего товаров на сумму: </p><input type="number" name="amount" value="{{total}}" class="text" style="margin-left:10px">
         <input style="display:none;" name="id_order" value={{content_data['id']}}>
-        <input type="submit" value="Заказать">
-    </form>
+    </div>
+    <input type="submit" value="Заказать" class="btn btn-primary">
+</form>
 
 {% else %}
-    <p>Пусто</p>
+<p>Пусто</p>
 {% endif %}
 <!--{{ content_data }}-->
 {% include 'footer.html' %}

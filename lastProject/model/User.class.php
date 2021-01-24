@@ -64,9 +64,24 @@ class User extends Model
     }
 
     public static function createUser($login,$password,$username){
-        return  db::getInstance()->Query(
-            'INSERT INTO user(user_login,user_password,user_name) values(:user_login,:user_password,:user_name)',
-            ['user_login' =>  $login, 'user_password' => self::createPassword($password),'user_name' => $username]
+        db::getInstance()->Insert('user',
+            [   'user_login'=>$login,
+                'user_password'=>self::createPassword($password),
+                'user_name'=>$username
+            ]
+        );
+
+        db::getInstance()->Insert('user_role',
+            [   'id_user'=>self::getUserId($login)[0]['id_user'],
+                'id_role'=>2
+            ]
+        );
+    }
+
+    public static function getUserId($login){
+        return  db::getInstance()->Select(
+            "SELECT id_user from `user` where user_login = :user_login",
+            ['user_login' => $login]
         );
     }
 

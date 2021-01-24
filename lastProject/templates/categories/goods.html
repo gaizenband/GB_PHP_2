@@ -1,14 +1,15 @@
 {% include 'header.html' %}
-
-<div class="good-item">
-    <img src="../img/items/{{content_data.id_good}}.jpg" alt="logo" class="good-img">
-    <h1>{{ content_data.name }}</h1>
-    <h2>{{ content_data.price }} руб.</h2>
-
+<div class="card mb-3 good">
+    <img src="../img/items/{{content_data.id_good}}.jpg" class="card-img-top good-img" alt="logo">
+    <div class="card-body">
+        <h5 class="card-title">{{ content_data.name }}</h5>
+        <p class="card-text">Description text</p>
+        <p class="card-text">{{ content_data.price }} руб.</p>
+    </div>
     {% if user %}
-    <button type="button" class='buyme' id='good_{{ content_data.id_good }}' onClick="addItem({{content_data.id_good}})">Купить</button>
+        <button type="button" class='btn btn-primary' id='good_{{ content_data.id_good }}' onClick="addItem({{content_data.id_good}})">Купить</button>
     {% else %}
-    <p>Пожалуйста, авторизуйтесь</p>
+        <p>Пожалуйста, авторизуйтесь</p>
     {% endif %}
 </div>
 

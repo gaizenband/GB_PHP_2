@@ -9,16 +9,51 @@
 header {
     margin: 0;
     width: 100%;
-    height: 10vh;
-    background-color: #6060d9;
 }
 
-.header {
+p{
+    margin-bottom: 0;
+}
+
+ol, ul, dl{
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.navbar-collapse{
+   width: auto;
+}
+
+.cards{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    margin: 0 10vw;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.card{
+    width: 18rem;
+    margin: 0 auto 10px auto;
+}
+
+.card-img-top{
+    height: 12rem;
+}
+
+.link{
+    color: rgb(186, 105, 105);
+    width: 100%;
+}
+
+.form-control{
+    width: 18rem;
+}
+
+.good{
+    width: 40rem;
+}
+
+.good-img{
+    height: auto;
 }
 
 .shopName {

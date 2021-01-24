@@ -11,7 +11,7 @@
         <p class="id_{{order.id_order_status}}">Статус: {{order.order_status_name}}</p>
     </div>
     {% if order.id_order_status == 1%}
-    <button class="deleteCartItem" type="button" onClick="cancelOrder({{order.id_order}})">Отменить</button>
+    <button class="deleteCartItem btn btn-primary" type="button" onClick="cancelOrder({{order.id_order}})">Отменить</button>
     {% endif %}
 </div>
 {% endfor %}

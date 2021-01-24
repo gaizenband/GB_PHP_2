@@ -15,24 +15,24 @@ class OrderController extends Controller
     public function add(){
         $id_good = $_GET['id'];
         if(!isset($_GET['num'])) {
-            $_GET['asAjax'] = true;
+                $_GET['asAjax'] = true;
 
-            $result = [
-                'result' => 0
-            ];
+                $result = [
+                    'result' => 0
+                ];
 
 
-            if($id_good > 0){
-                $this->basket->setUser($_COOKIE['id']);
-                $this->basket->setIdGood($id_good);
-                $this->basket->setPrice(Good::getGoodPrice($id_good));
-                $this->basket->setIdOrder();
-                $this->basket->save();
+                if ($id_good > 0) {
+                    $this->basket->setUser($_COOKIE['id']);
+                    $this->basket->setIdGood($id_good);
+                    $this->basket->setPrice(Good::getGoodPrice($id_good));
+                    $this->basket->setIdOrder();
+                    $this->basket->save();
 
-                $result['result'] = 1;
-            }
+                    $result['result'] = 1;
+                }
 
-            return json_encode($result);
+                return json_encode($result);
         }else{
             $this->basket->changeValue($id_good,$_GET['num']);
         }
@@ -41,11 +41,14 @@ class OrderController extends Controller
 
     public function cart(){
         if (isset($_GET['id'])){
-            $this->basket->deleteItem($_GET['id']);
+            $id_array = explode(',',$_GET['id']);
+            $this->basket->deleteItem($id_array[0],$id_array[1]);
         } elseif (isset ($_POST['amount'])){
             $this->basket->newIdOrder();
-            $this->order->setOrder($_POST['id_order'],$_COOKIE['id'],$_POST['amount']);
+            $this->basket->setIdOrder();
+            $this->order->setOrder($_POST['id_order'],$_COOKIE['id'],$_POST['amount'],0);
             header("Location: index.php?path=user/personalPage");
+
 
         }else{
             $this->basket->setUser($_COOKIE['id']);

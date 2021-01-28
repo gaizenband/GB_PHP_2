@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header, .footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #245779;
+    color: white;
+    font-size: 30px;
+}
+
+.content {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60vh;
+}
+
+.img {
+    width: 350px;
+}
+
+.img_big {
+    width: 600px;
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b854cc5c-5466-4d9a-8b00-4ba81761c6e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../lesson6/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/controller/AdminController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/controller/AdminController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/controller/IndexController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/controller/IndexController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/controller/OrderController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/controller/OrderController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/controller/UserController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/controller/UserController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/lib/App.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/lib/App.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/model/Basket.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/model/Basket.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/model/Category.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/model/Category.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/model/Good.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/model/Good.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/model/Model.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/model/Model.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/model/Order.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/model/Order.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/model/OrderGood.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/model/OrderGood.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/model/User.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/model/User.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/style/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/admin/control.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/admin/control.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/categories/goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/categories/goods.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/orders/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/orders/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/user/personalPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/user/personalPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson6/templates/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson6/templates/user/register.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1nD1uuNNa5wTkoVlvDUsJ1KpklJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b854cc5c-5466-4d9a-8b00-4ba81761c6e1" name="Default Changelist" comment="" />
+      <created>1610910072299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610910072299</updated>
+      <workItem from="1610910073393" duration="14000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+</project>

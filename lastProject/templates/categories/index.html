@@ -1,0 +1,31 @@
+{% include 'header.html' %}
+<div id="catalog-data">
+    <div class="category-list">
+        {% for subcategory in content_data.subcategories %}
+        <div class="card">
+            <a href="?path=Categories/{{ subcategory.id_category }}" class="text-decoration-none">
+                <img src="../img/categories/{{subcategory.img}}.jpg" class="card-img-top" alt="logo">
+                <div class="card-body">
+                    <h5 class="card-title link">{{ subcategory.name }}</h5>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="goods-data">
+    <div class="category-list">
+        {% for good in content_data.goods %}
+        <div class="card">
+            <a href="?path=Categories/goods/{{ good.id_good }}" class="text-decoration-none">
+                <img src="../img/items/{{good.id_good}}.jpg" class="card-img-top" alt="logo">
+                <div class="card-body">
+                    <h5 class="card-title link">{{ good.name }}</h5>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'footer.html' %}

@@ -1,0 +1,15 @@
+{% include 'header.html' %}
+<a href="?path=user/register">Регистрация</a>
+{{ content_data }}
+<form action="#" method="post">
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Login</label>
+        <input type="text" class="form-control" id="exampleInputText" aria-describedby="loginHelp" name="login" required>
+    </div>
+    <div class="mb-3">
+        <label for="examplePasswordText" class="form-label">Password</label>
+        <input type="password" class="form-control" id="examplePasswordText" aria-describedby="passHelp" name="password" required>
+    </div>
+    <input type="submit" value="Войти" class="btn btn-primary">
+</form>
+{% include 'footer.html' %}

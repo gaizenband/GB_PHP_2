@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <header-comp @placeorder='placeOrder' :cookie='cookie' :products='products' :cartitems="cartGoods" @filtergoods='filterGoods' @addproduct='addProduct' @deleteitem='deleteItem'></header-comp>
+        </header>
+        <main>
+            <personal-link @deleteitem='deleteItem' :products='products' @changestatus='changeStatus' @deleteorder='deleteOrder' @quit='quitUser' @register='register' :cookie='cookie' :userinfo='userInfo' :uniqueorders='uniqueOrders' :userorders='userOrders' :products='products'></personal-link>
+            <products-comp @fetchproducts="fetchProducts" :isinview='isInView' :showed='showedProducts' @addproduct='addProduct' :cookie='cookie'></products-comp>
+        </main>
+    </div>
+    
+    <script src="vue.js"></script>
+    <script src="header.js"></script>
+    <script src="products.js"></script>
+    <script src="perosnal.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

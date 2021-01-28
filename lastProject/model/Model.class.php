@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Model базовый класс для моделей
+ */
 abstract class Model {
 
     protected static $table;

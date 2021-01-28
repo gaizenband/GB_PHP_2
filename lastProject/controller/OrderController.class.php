@@ -1,17 +1,38 @@
 <?php
 
+/**
+ * Class OrderController контроллер для заказов
+ */
 class OrderController extends Controller
 {
+    /**
+     * @var string директория с шаблонами
+     */
     public $view = 'orders';
+    /**
+     * @var Basket корзина сайта
+     */
     private $basket;
+    /**
+     * @var OrderGood заказ
+     */
     private $order;
 
+    /**
+     * OrderController constructor.
+     */
     public function __construct()
     {
+        parent::__construct();
+        $this->title .= ' - Корзина';
         $this->basket = new Basket();
         $this->order = new OrderGood([]);
     }
 
+    /**
+     * @return false|string
+     * Метод для добавления товаров в корзину
+     */
     public function add(){
         $id_good = $_GET['id'];
         if(!isset($_GET['num'])) {
@@ -39,6 +60,10 @@ class OrderController extends Controller
 
     }
 
+    /**
+     * @return array
+     * Метод для работы с корзиной
+     */
     public function cart(){
         if (isset($_GET['id'])){
             $id_array = explode(',',$_GET['id']);
@@ -58,6 +83,10 @@ class OrderController extends Controller
         }
     }
 
+    /**
+     * @return void
+     * Метод для отмены заказа
+     */
     public function cancelOrder(){
         $_GET['asAjax'] = true;
         Order::cancelOrder($_GET['id']);

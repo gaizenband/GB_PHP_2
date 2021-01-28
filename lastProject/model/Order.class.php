@@ -1,8 +1,15 @@
 <?php
 
+/**
+ * Class Order - класс для управления заказами
+ */
 class Order extends Model {
-    protected static $table = 'orders';
+//    protected static $table = 'orders';
 
+    /**
+     * @return bool|void
+     * Установка параметров
+     */
     protected static function setProperties()
     {
         self::$properties['phone'] = [
@@ -20,6 +27,11 @@ class Order extends Model {
         ];
     }
 
+    /**
+     * @param int $id_user
+     * @return mixed
+     * Метод для получения заказов
+     */
     public static function getOrders($id_user = 0){
         if ($id_user == 0){
             return  db::getInstance()->Select(
@@ -40,6 +52,10 @@ class Order extends Model {
         }
     }
 
+    /**
+     * @param $id
+     * Метод для отмены заказа
+     */
     public static function cancelOrder($id){
         db::getInstance()->Update(
             '`order`',
@@ -49,15 +65,22 @@ class Order extends Model {
         header("Refresh:0");
     }
 
+    /**
+     * @return mixed
+     * Метод для получения списка возможных статусов заказа
+     */
     public static function getOrderStatusList(){
         $query = 'SELECT * FROM `order_status`';
         return db::getInstance()->Select($query);
     }
 
+    /**
+     * @param $order_id
+     * @param $user_id
+     * @param $status
+     * Метод для изменения статуса заказа
+     */
     public static function changeStatus($order_id,$user_id,$status){
-//        $query = "UPDATE `order` set id_order_status = :status where id_user = :id_user and id_order = :id_order";
-//        db::getInstance()->Query($query,['id_user' => $user_id, 'id_order' => $order_id, 'status'=>$status]);
-
         db::getInstance()->Update(
             '`order`',
             ['id_order_status'=>$status],

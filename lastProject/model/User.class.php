@@ -1,10 +1,15 @@
 <?php
 
-
+/**
+ * Class User - класс для управления пользователем
+ */
 class User extends Model
 {
-    protected static $table = 'user';
-
+//    protected static $table = 'user';\
+    /**
+     * @return bool|void
+     * Установка параметров
+     */
     protected static function setProperties()
     {
         self::$properties['id_user'] = [
@@ -31,10 +36,21 @@ class User extends Model
         ];
     }
 
+    /**
+     * @param $password
+     * @return string
+     * Создание пароля
+     */
     private static function createPassword($password){
         return md5($password);
     }
 
+    /**
+     * @param $login
+     * @param string $password
+     * @return bool
+     * Метод для проверки существования пользователя
+     */
     public static function checkUser($login,$password = '0'){
         if($password != '0'){
             $user = db::getInstance()->Select(
@@ -48,14 +64,18 @@ class User extends Model
             );
         }
 
+        if ($user){
+            return $user;
+        }
 
-            if ($user){
-                return $user;
-            }
-
-            return false;
+        return false;
     }
 
+    /**
+     * @param $id_user
+     * @return mixed
+     * Метод для получения пользователя по id
+     */
     public static function getUser($id_user){
         return  db::getInstance()->Select(
             'SELECT id_user, user_name, user_login, user_last_action FROM `user` WHERE id_user = :id_user',
@@ -63,6 +83,12 @@ class User extends Model
         );
     }
 
+    /**
+     * @param $login
+     * @param $password
+     * @param $username
+     * Метод для создания пользователя
+     */
     public static function createUser($login,$password,$username){
         db::getInstance()->Insert('user',
             [   'user_login'=>$login,
@@ -78,6 +104,11 @@ class User extends Model
         );
     }
 
+    /**
+     * @param $login
+     * @return mixed
+     * Метод для получения id ползователя по login
+     */
     public static function getUserId($login){
         return  db::getInstance()->Select(
             "SELECT id_user from `user` where user_login = :user_login",
@@ -85,6 +116,11 @@ class User extends Model
         );
     }
 
+    /**
+     * @param $id_user
+     * @return mixed
+     * Метод для получения роли пользователя
+     */
     public static function getUserRole($id_user){
         return  db::getInstance()->Select(
             'SELECT id_role FROM `user_role` WHERE id_user = :id_user',

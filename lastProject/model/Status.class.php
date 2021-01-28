@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Status класс со статусами товаров
+ */
 class Status
 {
     const Deleted = 0;

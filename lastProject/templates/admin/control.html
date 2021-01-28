@@ -28,7 +28,6 @@
                 <input type="text" name="Name" class="card-title link" required>
                 Категория родителя:
                 <select name="main">
-                    <option value="0" data-id="0" selected>Нет</option>
                 {% for parents in content_data.parents %}
                     <option value="{{parents.id_category}}" data-id="{{parents.id_category}}">{{parents.name}}</option>
                 {% endfor %}
@@ -44,6 +43,7 @@
             <div class="card-body">
                 <input type="text" value="{{ subcategory.name }}" name="Name" class="card-title link">
             </div>
+            <button type="button" class="btn btn-primary" style="margin-bottom: 2px;" onClick="removeItem('category',{{subcategory.id_category}})">Удалить товар</button>
             <input type="submit" value="Сохранить" class="btn btn-primary">
         </form>
         {% endfor %}
@@ -56,7 +56,7 @@
             <label for="newImgGood" class="label btn btn-primary">Картинка</label>
             <input id="newImgGood" type="file" accept="image/jpg" name="Image" required>
             <div class="card-body">
-                <p>Категория родителя:</p>
+                <p>Категория товара:</p>
                 <select name="category" required>
                     {% for categories in content_data.categories %}
                     <option value="{{categories.id_category}}">{{categories.name}}</option>
@@ -74,9 +74,20 @@
             <label for="imgGood" class="label btn btn-primary">Новая картинка</label>
             <input id="imgGood" type="file" accept="image/jpg" name="Image" >
             <div class="card-body">
+                <p>Категория товара:</p>
+                <select name="category" required>
+                    {% for categories in content_data.categories %}
+                        {% set selected = '' %}
+                        {%  if (good.id_category == categories.id_category)  %}
+                            {% set selected = 'selected' %}
+                        {% endif %}
+                    <option value="{{categories.id_category}}" {{selected}}>{{categories.name}}</option>
+                    {% endfor %}
+                </select>
                 <input type="text" value="{{ good.name }}" name="Name" class="card-title link">
                 <input type="number" value="{{ good.price }}" name="Price" class="card-title link">
             </div>
+            <button type="button" class="btn btn-primary" style="margin-bottom: 2px;" onClick="removeItem('good',{{good.id_good}})">Удалить товар</button>
             <input type="submit" value="Сохранить" class="btn btn-primary">
         </form>
         {% endfor %}

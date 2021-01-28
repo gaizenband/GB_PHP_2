@@ -1,9 +1,19 @@
 <?php
 
+/**
+ * Class UserController - контроллер для личного кабинета и пользователя
+ */
 class UserController extends Controller
 {
+    /**
+     * @var string директория с шаблонами
+     */
     public $view = 'user';
 
+    /**
+     * @return array|string
+     * Метод для отрисовки личного кабинета
+     */
     function personalPage(){
         if(isset($_COOKIE['id'])){
             return ['user'=>User::getUser($_COOKIE['id']),'orders'=>Order::getOrders($_COOKIE['id'])];
@@ -12,6 +22,10 @@ class UserController extends Controller
         return "None";
     }
 
+    /**
+     * @return bool|string
+     * Функция для входа пользователя
+     */
     function login(){
         if (isset($_POST['login'])){
             $user = User::checkUser($_POST['login'],$_POST['password']);
@@ -33,6 +47,10 @@ class UserController extends Controller
         return false;
     }
 
+    /**
+     * @return bool|string
+     * Метод для регистрации пользователя
+     */
     function register(){
         if (isset($_POST['login'])){
             $user = User::checkUser($_POST['login']);
@@ -50,11 +68,19 @@ class UserController extends Controller
         return false;
     }
 
+    /**
+     * @return void
+     * Функция для выхода из системы
+     */
     function logout(){
         setcookie("id", "", time()-3600);
         header('Location: index.php');
     }
 
+    /**
+     * @return mixed
+     * Получение роли пользователя для отображения админки или корзины
+     */
     public static function getUserStatus(){
         if (isset($_COOKIE['id'])){
             return User::getUserRole($_COOKIE['id'])[0]['id_role'];
